@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -36,6 +37,15 @@ public class CuttingOrder : MonoBehaviour {
 
    bool[] IsCut = new bool[8];
    bool[] Struck = new bool[8];
+
+   private readonly string[] browserProcesses = new string[]
+    {
+        "chrome",
+        "firefox",
+        "msedge",
+        "opera",
+        "iexplore" // Internet Explorer
+    };
 
    string[] Rows = {
       "R1O2Y3G4B5V678",
@@ -124,9 +134,9 @@ public class CuttingOrder : MonoBehaviour {
       }
       CalculateRuleNumber();
 
-      Debug.LogFormat("[Cutting Order #{0}] Version 1.0.1.", ModuleId);
+      UnityEngine.Debug.LogFormat("[Cutting Order #{0}] Version 1.0.1.", ModuleId);
 
-      Debug.LogFormat("[Cutting Order #{0}] Using row {1}.", ModuleId, RuleNumber + 1);
+      UnityEngine.Debug.LogFormat("[Cutting Order #{0}] Using row {1}.", ModuleId, RuleNumber + 1);
       CalculateCurrentWireToCut();
 
       //StartCoroutine(SolveAnim());
@@ -204,12 +214,23 @@ public class CuttingOrder : MonoBehaviour {
             CurrentWireToCut = TargetWire;
          }
       }
-      Debug.LogFormat("[Cutting Order #{0}] Current wire is wire number {1}.", ModuleId, CurrentWireToCut + 1);
+      UnityEngine.Debug.LogFormat("[Cutting Order #{0}] Current wire is wire number {1}.", ModuleId, CurrentWireToCut + 1);
    }
 
    void Update () { //Shit that happens at any point after initialization
-
+      /*if (IsBrowserOpen()) {
+         UnityEngine.Debug.Log("A web browser is currently open.");
+      }
+      else {
+         UnityEngine.Debug.Log("No web browser is open.");
+      }*/
    }
+
+   /*private bool IsBrowserOpen () {
+      // Check running processes to see if any match the common browser process names
+      var runningProcesses = Process.GetProcesses();
+      return runningProcesses.Any(p => browserProcesses.Contains(p.ProcessName.ToLower()));
+   }*/
 
    void Solve () {
       ModuleSolved = true;

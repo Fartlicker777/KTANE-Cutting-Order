@@ -12147,6 +12147,7 @@ MonoBehaviour:
   LEDColors:
   - {fileID: 2100000, guid: cea8ae16f8f72f04297283de8d889526, type: 2}
   - {fileID: 2100000, guid: 1bd763a3de5c80e4196bc0428d1905c4, type: 2}
+  - {fileID: 2100000, guid: 04b808d921517754c8f0eaaf2cc6740a, type: 2}
 --- !u!114 &114432470685523708
 MonoBehaviour:
   m_ObjectHideFlags: 1
